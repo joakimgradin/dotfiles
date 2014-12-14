@@ -7,7 +7,7 @@ set t_Co=256
 :color darkspectrum_modified
 
 set number
-
+   
 set ignorecase
 set smartcase
 
@@ -16,7 +16,7 @@ set autoindent
 set shiftwidth=3
 set softtabstop=3
 set expandtab
-
+:autocmd FileType make set noexpandtab
 syntax enable
 
 set showcmd
@@ -35,8 +35,8 @@ inoremap jk <esc>
 map <C-n> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
-nmap <up> <Nop>
-nmap <down> <Nop>
+nmap <up> ddkP 
+nmap <down> ddp 
 nmap <left> <Nop>
 nmap <right> <Nop>
 
