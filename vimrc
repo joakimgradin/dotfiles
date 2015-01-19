@@ -28,6 +28,10 @@ set hlsearch
 
 call pathogen#infect()
 
+" Alias "
+
+command Texview LLPStartPreview
+
 " Mappings "
 
 inoremap jk <esc>
@@ -35,10 +39,10 @@ inoremap jk <esc>
 map <C-n> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
-nmap <up> ddkP 
-nmap <down> ddp 
-nmap <left> <Nop>
-nmap <right> <Nop>
+nmap <up> ddkP
+nmap <down> ddp
+nmap <left> xhP
+nmap <right> xp
 
 imap <up> <Nop>
 imap <down> <Nop>
