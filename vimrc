@@ -1,54 +1,70 @@
+" Use modern Vim
 set nocompatible
-set laststatus=2
-set encoding=utf-8
+filetype off
 
-set t_Co=256
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-:color darkspectrum_modified
+"--- Plugins ---
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Yggdroot/indentLine'
+Plugin 'morhetz/gruvbox'
+Plugin 'preservim/nerdtree'
 
+" All plugins must be added before this line
+call vundle#end()
+filetype plugin indent on
+
+"--- Keybindings ---
+inoremap jk <Esc>
+
+"--- Interface options ---
+set ruler
 set number
-   
-set ignorecase
-set smartcase
+set relativenumber
+set cursorline
 
-set autoindent
-
-set shiftwidth=3
-set softtabstop=3
 set expandtab
-:autocmd FileType make set noexpandtab
-syntax enable
+set tabstop=3
+set shiftwidth=3
 
 set showcmd
-
 set showmatch
-
-set incsearch
 set hlsearch
 
-call pathogen#infect()
+syntax on
 
-" Alias "
+set belloff=all
 
-command Texview LLPStartPreview
+"--- color scheme ---
+colo gruvbox
+set background=dark
 
-" Mappings "
+"--- Misc options ---
 
-inoremap jk <esc>
+" Set status for airline to show up
+set laststatus=2
 
-map <C-n> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
+" Disable tex formatting in the vim terminal
+let g:tex_conceal=''
 
-nmap <up> ddkP
-nmap <down> ddp
-nmap <left> xhP
-nmap <right> xp
+" Nice search with :find
+set path+=**
+set wildmenu
 
-imap <up> <Nop>
-imap <down> <Nop>
-imap <left> <Nop>
-imap <right> <Nop>
+" Syntax definitions for filetypes
+au BufReadPost *.cls set syntax=tex
+au BufReadPost *.sty set syntax=tex
 
-nmap <C-t> :tabnext<CR>
-nmap <C-p> :tabprevious<CR>
-nmap G Gzz
+" Remember cursor position when re-opening a file
+augroup vimStartup
+   au!
+   autocmd BufReadPost * 
+   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+   \ | exe "normal! g`\""
+   \ | endif  
+augroup END
