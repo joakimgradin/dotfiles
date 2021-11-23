@@ -2,6 +2,15 @@
 set nocompatible
 filetype off
 
+" Fix spell-check colors when using the gruvbox colorscheme
+augroup my_colors
+   autocmd!
+   autocmd ColorScheme gruvbox hi SpellBad cterm=underline ctermfg=Red
+   autocmd ColorScheme gruvbox hi SpellCap cterm=underline ctermfg=Red
+   autocmd ColorScheme gruvbox hi SpellLocal cterm=underline ctermfg=Yellow
+   autocmd ColorScheme gruvbox hi SpellRare cterm=underline ctermfg=Blue
+augroup END
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,6 +23,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
 Plugin 'morhetz/gruvbox'
 Plugin 'preservim/nerdtree'
+Plugin 'SirVer/ultisnips'
 
 " All plugins must be added before this line
 call vundle#end()
@@ -21,6 +31,11 @@ filetype plugin indent on
 
 "--- Keybindings ---
 inoremap jk <Esc>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/scripts/snippets']
 
 "--- Interface options ---
 set ruler
